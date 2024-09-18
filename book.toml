@@ -1,0 +1,39 @@
+[book]
+title = "Reverge Engineering for Dabblers"
+authors = ["Arnaud 'red' Rouyer <red@dreamleaves.org>"]
+description = "A book about reverse-engineering and video games"
+src = "src"
+multilingual = false
+language = "en"
+text-direction = "ltr"
+
+[rust]
+edition = "2021"
+
+[build]
+build-dir = "book"
+create-missing = true
+
+# [preprocessor.alerts]
+# before = [ "index" ]
+
+[preprocessor.index]
+
+[preprocessor.links]
+
+[output.html]
+additional-css = ["src/reford.css"]
+
+# [output.html.search]
+# limit-results = 15
+
+# [output.pandoc.profile.pdf]
+# output-file = "reford.pdf"
+# pdf-engine = "pdflatex"
+# to = "latex"
+
+# from = "commonmark" # source format; extensions enabled/disabled through this option are preserved
+# file-scope = true # parse each file individually before combining
+# number-sections = true # number sections headings
+# standalone = true # produce output with an appropriate header and footer
+# table-of-contents = true # include an automatically generated table of contents
