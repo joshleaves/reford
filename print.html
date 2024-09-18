@@ -181,21 +181,21 @@
 <hr />
 <div class="right">
   <img src="images/lba2-setup.png" alt="Little Big Adventure 2">
-  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Little Big Adventure 2</center>
+  <center class="legend">Little Big Adventure 2</center>
 </div>
 <p>One of my earliest memories was a demo of <strong>Little Big Adventure 2</strong><sup class="footnote-reference"><a href="#lba2">2</a></sup> contained on a CD. The demo only contained three areas: an island, a cave, and a company building looking like a bank. Doing any action to exit one area, such as entering a house on the island, would lead to the next area: it felt strange to me that entering a building on an island would get me into a cave. By looking at the game files on my desktop, I found a solution: as they were three areas, there were three files in a <code>SAVE</code> folder: <code>DEMO0.LBA</code>, <code>DEMO1.LBA</code>, and <code>DEMO2.LBA</code>.</p>
 <p>I renamed <code>DEMO2.LBA</code> to <code>DEMO1.LBA</code>, copied <code>DEMO0.LBA</code> to <code>DEMO2.LBA</code>, and restarted the demo: I entered the first building on the island and found myself in the bank. I shortly made the character walk backwards to exit the building, and he was on the island again. I felt satisfied with myself and forgot about the demo, until I bought the full game a few years later.</p>
 <hr />
 <div class="right">
   <img src="images/best-of-pc-soluces-hs2.png" alt="Still got it to this day!">
-  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Still got it to this day!</center>
+  <center class="legend">Still got it to this day!</center>
 </div>
 <p>As I grew older, I tried to open my <strong>Tomb Raider</strong> save games, but the Windows Notepad would only show me a lot of spaces and strange characters, with the only readable part being the level name right in the middle. I tried to change it to another level name, and booted the game: my savegame did indicate the name of that other level, but loading it still sent me to the original level. I was missing something.</p>
 <p>Thankfully, I had the luck to stumble on a game cheats magazine<sup class="footnote-reference"><a href="#pcsoluces">3</a></sup> that contained game solutions, cheats, and codes, but, more importantly, a full lesson on how those codes worked. In those few pages, I learned how data worked, what <strong>hexadecimal</strong> was and why <code>0x0A</code> came after <code>0x09</code> instead of <code>0x10</code>.</p>
 <hr />
 <div class="right">
   <img src="images/zsnes-cheating.png" alt="The ZSNES cheats searcher">
-  <center style="font-size: 0.8em; background-color: black; font-style: italic;">The ZSNES cheats searcher</center>
+  <center class="legend">The ZSNES cheats searcher</center>
 </div>
 <p>What this magazine never taught me was how to look for cheats: I learned with the Internet. Discovering Super Nintendo emulation with ZSNES, I spent a lot of time playing with its cheats searcher.</p>
 <p>Discovering myself to be a huge fan of Japanese RPG games, the Super Nintendo quickly became my favourite console, and I would often play games, search for various ways to cheat, and learn about romhacking. While I never used that knowledge to work on my own romhack, a huge part of it would subconsciously make its way in my brain....</p>
@@ -237,7 +237,7 @@
 <p>For instance, if one were to look up an "Infinite Money" code for the <em>GameBoy</em> game <strong>Pokémon RED</strong>, the very first result would be the following list of numbers:</p>
 <div class="right">
   <img src="images/Pokemon_Red_Version_2024-09-18_02.38.06.png" alt="Not just rich, infinitely rich!">
-  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Not just rich, infinitely rich!</center>
+  <center class="legend">Not just rich, infinitely rich!</center>
 </div>
 <pre><code>019947D3
 019948D3
@@ -256,7 +256,7 @@ writeValueToOffset(0x01, 0x99, 0x39D3)
 <p>But now this code just drives more questions: what would happen if we only used one of those three codes? Let's try again with something else:</p>
 <div class="right">
   <img src="images/Pokemon_Red_Version_2024-09-18_03.08.41.png" alt="Another kind of rich">
-  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Another kind of rich</center>
+  <center class="legend">Another kind of rich</center>
 </div>
 <pre><code>011247D3 # writeValueToOffset(0x01, 0x12, 0x47D3)
 013448D3 # writeValueToOffset(0x01, 0x34, 0x48D3)
