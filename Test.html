@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Mechanisms of infinite money - Reverge Engineering for Dabblers</title>
+        <title>Test - Reverge Engineering for Dabblers</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="Foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="Test.html">Test</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Starter pack</li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> ActionReplay Antics</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="01.01_A-history-of-cheating.html"><strong aria-hidden="true">1.1.</strong> A history of cheating</a></li><li class="chapter-item expanded "><a href="01.02_Mechanisms-of-infinite-money.html" class="active"><strong aria-hidden="true">1.2.</strong> Mechanisms of infinite money</a></li><li class="chapter-item expanded "><a href="01.03_The-quest-for-immortality.html"><strong aria-hidden="true">1.3.</strong> The quest for immortality</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Breaking Bigger Baddies</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> The big guns</div></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Digging in</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> ColdSteel Cheating</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Romhacking</li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="Acknowledgements.html">Acknowledgements</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="Foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="Test.html" class="active">Test</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Starter pack</li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> ActionReplay Antics</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="01.01_A-history-of-cheating.html"><strong aria-hidden="true">1.1.</strong> A history of cheating</a></li><li class="chapter-item expanded "><a href="01.02_Mechanisms-of-infinite-money.html"><strong aria-hidden="true">1.2.</strong> Mechanisms of infinite money</a></li><li class="chapter-item expanded "><a href="01.03_The-quest-for-immortality.html"><strong aria-hidden="true">1.3.</strong> The quest for immortality</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Breaking Bigger Baddies</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> The big guns</div></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Digging in</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> ColdSteel Cheating</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Romhacking</li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="Acknowledgements.html">Acknowledgements</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,57 +174,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="mechanisms-of-infinite-money"><a class="header" href="#mechanisms-of-infinite-money">Mechanisms of infinite money</a></h1>
-<p>Regardless of their name, all cheat devices work in the same way: they write values to the memory.</p>
-<p>For instance, if one were to look up an "Infinite Money" code for the <em>GameBoy</em> game <strong>Pokémon RED</strong>, the very first result would be the following list of numbers:</p>
-<div class="right">
-  <img src="images/Pokemon_Red_Version_2024-09-18_02.38.06.png" alt="Not just rich, infinitely rich!">
-  <center class="legend">Not just rich, infinitely rich!</center>
-</div>
-<pre><code>019947D3
-019948D3
-019949D3
-</code></pre>
-<p>Using these as a GameShark code in an emulator, and starting a new game, we get the desired outcome: our hero is now rich and will stay that way until we disable the code.</p>
-<p>Codes for some consoles may have sophisticated specifications, some even including actual <em>programming code</em> in them, but the GameShark for Gameboy is simple: an eight-number code is meant to be split into the arguments for a function with the prototype <code>writeValueToOffset(u8 rombank, u8 value, u16 offset)</code>, giving us the following pseudo-code:</p>
-<pre><code>writeValueToOffset(0x01, 0x99, 0x47D3)
-writeValueToOffset(0x01, 0x99, 0x48D3)
-writeValueToOffset(0x01, 0x99, 0x39D3)
-</code></pre>
-<div class="warning">
-  <h4 id="attention"><a class="header" href="#attention">Attention!</a></h4>
-<p>The GameBoy being a <em>low-endian</em> game system, the addresses <code>0x47D3</code>, <code>0x48D3</code>, and <code>0x49D3</code>, are respectively: <code>0xD347</code>, <code>0xD348</code>, and <code>0xD349</code>, and therefore follow each other.</p>
-</div>
-<p>But now this code just drives more questions: what would happen if we only used one of those three codes? Let's try again with something else:</p>
-<div class="right">
-  <img src="images/Pokemon_Red_Version_2024-09-18_03.08.41.png" alt="Another kind of rich">
-  <center class="legend">Another kind of rich</center>
-</div>
-<pre><code>011247D3 # writeValueToOffset(0x01, 0x12, 0x47D3)
-013448D3 # writeValueToOffset(0x01, 0x34, 0x48D3)
-015649D3 # writeValueToOffset(0x01, 0x56, 0x49D3)
-</code></pre>
-<p>After disabling the previous code, and trying this one, we can see the results and make our deductions: each of the three memory addresses from <code>0xD347</code> to <code>0xD349</code> is responsible for two digits of the player money.</p>
-<p>Actually, we could just write <code>99</code> in <code>0xD347</code> and make our hero very close to being a millionaire, but a pretty number is way more satisfying, isn't it?</p>
-<div class="notice">
-  <h4 id="did-you-notice"><a class="header" href="#did-you-notice">Did you notice?</a></h4>
-<p>Astute readers may notice something strange: the value is written in hexadecimal as <code>0x99</code> (equal to <code>153</code> in decimal), but the number displayed is <code>99</code> in decimal. This is because in Pokémon Red, money is stored as a <strong>Binary-Coded Decimal</strong><sup class="footnote-reference"><a href="#bcd">1</a></sup>, and not as hexadecimal. Storing big numbers as Binary-Coded Decimals is a method that was popular on older processors, like the SM53 the GameBoy uses.</p>
-</div>
-<p>Another interesting thing to notice is that even spending money, as long as the code is enabled, the amount will never decrease.</p>
-<hr />
-<div class="footnote-definition" id="bcd"><sup class="footnote-definition-label">1</sup>
-<p>As evidenced in the <a href="https://github.com/pret/pokered/blob/1f6e2bf999401b9444f939bb40c1eb279bc51829/engine/menus/start_sub_menus.asm#L556C7-L556C21">disassembly code</a>.</p>
-</div>
+                        <h1 id="test"><a class="header" href="#test">Test</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="01.01_A-history-of-cheating.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="Foreword.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="01.03_The-quest-for-immortality.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="01.01_A-history-of-cheating.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -234,11 +194,11 @@ writeValueToOffset(0x01, 0x99, 0x39D3)
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="01.01_A-history-of-cheating.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="Foreword.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="01.03_The-quest-for-immortality.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="01.01_A-history-of-cheating.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
