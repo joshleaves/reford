@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Reverge Engineering for Dabblers</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="A book about reverse-engineering and video games">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="src/reford.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="Foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Starter pack</li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> ActionReplay Antics</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="01.01_A-history-of-cheating.html"><strong aria-hidden="true">1.1.</strong> A history of cheating</a></li><li class="chapter-item expanded "><a href="01.02_Mechanisms-of-infinite-money.html"><strong aria-hidden="true">1.2.</strong> Mechanisms of infinite money</a></li><li class="chapter-item expanded "><a href="01.03_The-quest-for-immortality.html"><strong aria-hidden="true">1.3.</strong> The quest for immortality</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Breaking Bigger Baddies</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> The big guns</div></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Digging in</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> ColdSteel Cheating</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Romhacking</li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="Acknowledgements.html">Acknowledgements</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reverge Engineering for Dabblers</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>For as long as I can remember, I have always been a tinkerer.</p>
+<p>As a child, my fingers were playing with LEGO bricks, and obtaining my first personnal computer<sup class="footnote-reference"><a href="#pc">1</a></sup> when I was barely six years old led me to another type of tinkering. My father taught me to use it, install softwares (games), configure and run them, play around with their files,... But without access to the Internet, all I could learn was on my own.</p>
+<hr />
+<div class="right">
+  <img src="images/lba2-setup.png" alt="Little Big Adventure 2">
+  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Little Big Adventure 2</center>
+</div>
+<p>One of my earliest memories was a demo of <strong>Little Big Adventure 2</strong><sup class="footnote-reference"><a href="#lba2">2</a></sup> contained on a CD. The demo only contained three areas: an island, a cave, and a company building looking like a bank. Doing any action to exit one area, such as entering a house on the island, would lead to the next area: it felt strange to me that entering a building on an island would get me into a cave. By looking at the game files on my desktop, I found a solution: as they were three areas, there were three files in a <code>SAVE</code> folder: <code>DEMO0.LBA</code>, <code>DEMO1.LBA</code>, and <code>DEMO2.LBA</code>.</p>
+<p>I renamed <code>DEMO2.LBA</code> to <code>DEMO1.LBA</code>, copied <code>DEMO0.LBA</code> to <code>DEMO2.LBA</code>, and restarted the demo: I entered the first building on the island and found myself in the bank. I shortly made the character walk backwards to exit the building, and he was on the island again. I felt satisfied with myself and forgot about the demo, until I bought the full game a few years later.</p>
+<hr />
+<div class="right">
+  <img src="images/best-of-pc-soluces-hs2.png" alt="Still got it to this day!">
+  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Still got it to this day!</center>
+</div>
+<p>As I grew older, I tried to open my <strong>Tomb Raider</strong> save games, but the Windows Notepad would only show me a lot of spaces and strange characters, with the only readable part being the level name right in the middle. I tried to change it to another level name, and booted the game: my savegame did indicate the name of that other level, but loading it still sent me to the original level. I was missing something.</p>
+<p>Thankfully, I had the luck to stumble on a game cheats magazine<sup class="footnote-reference"><a href="#pcsoluces">3</a></sup> that contained game solutions, cheats, and codes, but, more importantly, a full lesson on how those codes worked. In those few pages, I learned how data worked, what <strong>hexadecimal</strong> was and why <code>0x0A</code> came after <code>0x09</code> instead of <code>0x10</code>.</p>
+<hr />
+<div class="right">
+  <img src="images/zsnes-cheating.png" alt="The ZSNES cheats searcher">
+  <center style="font-size: 0.8em; background-color: black; font-style: italic;">The ZSNES cheats searcher</center>
+</div>
+<p>What this magazine never taught me was how to look for cheats: I learned with the Internet. Discovering Super Nintendo emulation with ZSNES, I spent a lot of time playing with its cheats searcher.</p>
+<p>Discovering myself to be a huge fan of Japanese RPG games, the Super Nintendo quickly became my favourite console, and I would often play games, search for various ways to cheat, and learn about romhacking. While I never used that knowledge to work on my own romhack, a huge part of it would subconsciously make its way in my brain....</p>
+<hr />
+<p>Years later, as an adult, I ended up working in the IT industry.</p>
+<p>My curiosity and the breadth of knowledge I had acquired over the years led people to label me their "in-house hacker" and I've often been the go-to employee for insane solutions: How is our concurrent's product working? Can we retrieve informations from this proprietary database? Could we hook our own process on this website's database? Did you just drop a 0-day for our payment processor? We've been scraped by a concurrent, you got something to prevent that?</p>
+<p>While all of these feats sounded "amazing" to my friends and work peers, imposter syndrome got the better of me. For a long time, that knowledge and know-how just felt "normal" to me, and even "subpar" when comparing it to more dedicated hackers I admired.</p>
+<p>My first vision of the Internet was with a 14.4K dial-up modem with a Formula 1-looking device on the box<sup class="footnote-reference"><a href="#modem">4</a></sup>. I've been online for close to 30 years, reading and consuming content about my passion for "hacking" and reverse-engineering. While there exists a lot of people and projects dedicated to the preservation of knowledge online, I feel that the Web 2.0 trend and rise of social networks is slowly putting knowledge behind paywalls.</p>
+<hr />
+<p>This book intends to work on those two problems.</p>
+<p>I hope you will have as much fun reading and learning from this book, as I'm taking solace in sharing the way my knowledge and working process were formed.</p>
+<hr />
+<div class="footnote-definition" id="pc"><sup class="footnote-definition-label">1</sup>
+<p>At the time, it was equiped with an Intel i386 processor.</p>
+</div>
+<div class="footnote-definition" id="lba2"><sup class="footnote-definition-label">2</sup>
+<p>It seems <a href="https://magicball.net/downloads/lba2-demo/">this demo has been archived</a>.</p>
+</div>
+<div class="footnote-definition" id="pcsoluces"><sup class="footnote-definition-label">3</sup>
+<p>The magazine, <a href="https://www.abandonware-magazines.org/affiche_mag.php?mag=110&amp;num=4473&amp;album=oui">PC Soluces Hors-série 2, has been archived</a>.</p>
+</div>
+<div class="footnote-definition" id="modem"><sup class="footnote-definition-label">4</sup>
+<p>If anyone finds a photo of the box I'm talking about, I'm interested.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-history-of-cheating"><a class="header" href="#a-history-of-cheating">A history of cheating</a></h1>
+<p>Originally made for the Commodore 64 computer around 1986, and later adapted and released for many other game consoles along the years, the <strong>Action Replay</strong><sup class="footnote-reference"><a href="#tm">1</a></sup> was a device users would plug into their game console, enabling them access to the console's internal memory, reading and writing through it, as they were playing.</p>
+<p>Soon after, other manufacturers would follow and publish their own devices, most famously <strong>Game Shark</strong><sup class="footnote-reference"><a href="#tm">1</a></sup> and <strong>Game Genie</strong>[^1], and gaming magazines would include pages full of codes. With the Internet, the codes were liberated and these three brands became generic terms<sup class="footnote-reference"><a href="#gg">2</a></sup> online for "cheat code".</p>
+<p>Thanks to the tremendous work of emulator developers, many of them began to allow users to access the game console memory to use codes, and, more interestingly,in order to find them. Soon enough, even modded consoles got free softwares implementing similar functionalities.</p>
+<hr />
+<div class="footnote-definition" id="tm"><sup class="footnote-definition-label">1</sup>
+<p>Everything regarding these products belongs to their respective owners.</p>
+</div>
+<div class="footnote-definition" id="gg"><sup class="footnote-definition-label">2</sup>
+<p>The <strong>Game Genie</strong> is actually different: it does not patch the RAM, but the game ROM, modifying the game straight before booting.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mechanisms-of-infinite-money"><a class="header" href="#mechanisms-of-infinite-money">Mechanisms of infinite money</a></h1>
+<p>Regardless of their name, all cheat devices work in the same way: they write values to the memory.</p>
+<p>For instance, if one were to look up an "Infinite Money" code for the <em>GameBoy</em> game <strong>Pokémon RED</strong>, the very first result would be the following list of numbers:</p>
+<div class="right">
+  <img src="images/Pokémon_Red_Version_2024-09-18_02.38.06.png" alt="Not just rich, infinitely rich!">
+  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Not just rich, infinitely rich!</center>
+</div>
+<pre><code>019947D3
+019948D3
+019949D3
+</code></pre>
+<p>Using these as a GameShark code in an emulator, and starting a new game, we get the desired outcome: our hero is now rich and will stay that way until we disable the code.</p>
+<p>Codes for some consoles may have sophisticated specifications, some even including actual <em>programming code</em> in them, but the GameShark for Gameboy is simple: an eight-number code is meant to be split into the arguments for a function with the prototype <code>writeValueToOffset(u8 rombank, u8 value, u16 offset)</code>, giving us the following pseudo-code:</p>
+<pre><code>writeValueToOffset(0x01, 0x99, 0x47D3)
+writeValueToOffset(0x01, 0x99, 0x48D3)
+writeValueToOffset(0x01, 0x99, 0x39D3)
+</code></pre>
+<div class="warning">
+  <h4 id="attention"><a class="header" href="#attention">Attention!</a></h4>
+<p>The GameBoy being a <em>low-endian</em> game system, the addresses <code>0x47D3</code>, <code>0x48D3</code>, and <code>0x49D3</code>, are respectively: <code>0xD347</code>, <code>0xD348</code>, and <code>0xD349</code>, and therefore follow each other.</p>
+</div>
+<p>But now this code just drives more questions: what would happen if we only used one of those three codes? Let's try again with something else:</p>
+<div class="right">
+  <img src="images/Pokémon_Red_Version_2024-09-18_03.08.41.png" alt="Another kind of rich">
+  <center style="font-size: 0.8em; background-color: black; font-style: italic;">Another kind of rich</center>
+</div>
+<pre><code>011247D3 # writeValueToOffset(0x01, 0x12, 0x47D3)
+013448D3 # writeValueToOffset(0x01, 0x34, 0x48D3)
+015649D3 # writeValueToOffset(0x01, 0x56, 0x49D3)
+</code></pre>
+<p>After disabling the previous code, and trying this one, we can see the results and make our deductions: each of the three memory addresses from <code>0xD347</code> to <code>0xD349</code> is responsible for two digits of the player money.</p>
+<p>Actually, we could just write <code>99</code> in <code>0xD347</code> and make our hero very close to being a millionaire, but a pretty number is way more satisfying, isn't it?</p>
+<div class="notice">
+  <h4 id="did-you-notice"><a class="header" href="#did-you-notice">Did you notice?</a></h4>
+<p>Astute readers may notice something strange: the value is written in hexadecimal as <code>0x99</code> (equal to <code>153</code> in decimal), but the number displayed is <code>99</code> in decimal. This is because in Pokémon Red, money is stored as a <strong>Binary-Coded Decimal</strong><sup class="footnote-reference"><a href="#bcd">1</a></sup>, and not as hexadecimal. Storing big numbers as Binary-Coded Decimals is a method that was popular on older processors, like the SM53 the GameBoy uses.</p>
+</div>
+<p>Another interesting thing to notice is that even spending money, as long as the code is enabled, the amount will never decrease.</p>
+<hr />
+<div class="footnote-definition" id="bcd"><sup class="footnote-definition-label">1</sup>
+<p>As evidenced in the <a href="https://github.com/pret/pokered/blob/1f6e2bf999401b9444f939bb40c1eb279bc51829/engine/menus/start_sub_menus.asm#L556C7-L556C21">disassembly code</a>.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-quest-for-immortality"><a class="header" href="#the-quest-for-immortality">The quest for immortality</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="acknowledgements"><a class="header" href="#acknowledgements">Acknowledgements</a></h1>
+<p>Writing this book, I have merely been standing on the shoulders of giants.</p>
+<p>All the research or digging that I could do and describe in this book has been learned from a lot of talented people who made the choice to share their knowledge publicly on the internet. While I could not always quote or point to specific projects in the middle of a chapter because I felt it would break the flow of reading, or because said project was only tangentially related to the topic at hand, I wanted to devote a chapter to many of them that helped me and my understanding.</p>
+<h1 id="actionreplay-antics"><a class="header" href="#actionreplay-antics"><em>Actionreplay Antics</em></a></h1>
+<h1 id="pan-docs"><a class="header" href="#pan-docs"><a href="https://gbdev.io/pandocs/">Pan Docs</a></a></h1>
+<p>The <a href="https://gbdev.io/pandocs/"><strong>Pan Docs</strong></a> are a document, dating back to 1995, that has served as THE technical reference for the GameBoy system architecture. Originally <a href="https://gbdev.io/pandocs/History.html">a single .TXT file</a>, it has since evolved into a full online book, with many contributions, and is widely used by hobbyist emulator developers.</p>
+<p>Thanks to their chapter on <a href="https://gbdev.io/pandocs/Shark_Cheats.html">Game Genie/Shark Cheats</a>, I had a definitive answer on the format of Game Shark cheats on the GameBoy: an <strong>incorrect</strong> source had separated the 4-bytes code (<code>01 99 47 D3</code>) as follows:</p>
+<div class="table-wrapper"><table><thead><tr><th>Opcode</th><th>Value</th><th>Address</th></tr></thead><tbody>
+<tr><td><code>01</code></td><td><code>99</code></td><td><code>47 D3</code></td></tr>
+</tbody></table>
+</div>
+<p>The misconception most likely stems from ActionReplay/GameShark for other consoles actually using opcodes, with <code>01</code> often being the simplest instruction: "write data to address".</p>
+<h1 id="shonumi"><a class="header" href="#shonumi"><a href="https://shonumi.github.io/index.html">Shonumi</a></a></h1>
+<p>While the <strong>Pan Docs</strong> are the reference documentation for the GameBoy system, it lacks in documentation on the non-official peripherals, making perservation of games using some of these hardware very difficult. Shonumi, the developer for the <a href="https://github.com/shonumi/gbe-plus">GBE+</a> GameBoy emulator started writing the <a href="https://shonumi.github.io/dandocs.html"><strong>Dan Docs</strong></a> to study them.</p>
+<p>That research is documented on Shonumi's blog, in the "Edge of Emulation" series, where obscure GameBoy peripherals are reverse-engineered to properly document and emulate them.</p>
+<h1 id="ares"><a class="header" href="#ares"><a href="https://ares-emu.net/">ares</a></a></h1>
+<p>Originally started by developer <a href="https://www.reddit.com/r/emulation/comments/vm2avf/remembering_near_developer_of_higan_ares_who/">near</a>, <strong>ares</strong> is a multi-system game emulator.</p>
+<p>Just as the above <strong>Pan Docs</strong> are the reference for the GameBoy architecture, near has been instrumental in the documentation and preservation of his favourite machine, the Super Famicom (aka Super Nintendo). Frustrated with the shortcuts used by emulators of the time (famously, ZSNES, and Snes9x to a lesser degree) to achieve greater compatibility, to the detriment of accuracy, <a href="https://en.wikipedia.org/wiki/Near_(programmer)">near</a> began <strong>bsnes</strong>, an emulator meant to accurately replicate all hardware parts of the console.</p>
+<p>While their work was initially contested because it required high-end computers to emulate a "simple" system, the benefits it brought to game hacking (many old fan translations having only been tested on non-acurrate emulators, they wouldn't work properly on real hardware), combined with the evolution of consumer computers performances, made their emulation approach <em>de facto</em> nowadays.</p>
+<h1 id="pokémon-red-decompilation-project"><a class="header" href="#pokémon-red-decompilation-project"><a href="https://github.com/pret/pokered">Pokémon Red decompilation project</a></a></h1>
+<p>Started by <a href="https://github.com/pret/pokered/commit/df2b3b739c9cf8a5d63d6f8f342e63bc67525ebc">iimarckus in 2010</a>, this project has since taken a life on its own, and is your best source to understand any question you may have on how the original Pokémon worked.</p>
+<p>For instance, did you know that the reason there are 8 badges in the game is because <a href="https://github.com/pret/pokered/blob/1f6e2bf999401b9444f939bb40c1eb279bc51829/constants/ram_constants.asm#L27">they were easier to store in the player inventory as 8 bits</a>?</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
