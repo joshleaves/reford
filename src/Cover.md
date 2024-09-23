@@ -1,4 +1,5 @@
-# Placeholder Cover
+<h1 style="text-align: center;">Reverse Engineering for Dabblers</h1>
+<h4 style="text-align: center;">A book by <a href="mailto:josh.guthrie@gmail.com">Arnaud "red" Rouyer</a></h3>
 
 <div class="warning">
   <h4>Attention!</h4>

@@ -6,10 +6,10 @@ While more experienced bounty hunters are already used to most of the techniques
 
 This book expects some basic programming knowledge, not in any specific language, but at least some familiarity with one.
 
-## Binary, decimal, and hexadecimal
+## Bits, binary, decimal, hexadecimal, and bytes
 Human beings use the decimal system because it's clearer to them.
 
-Computers, however, function in binary (bits: one or zero), and use the hexadecimal system: counting goes from 0 to 9, then from A to F, and to 10. The mental gymnastic is a bit hard to get to, but easy to understand.
+Computers, however, function in binary (bits: one or zero), and use the hexadecimal system to access and represent data as bytes. Hexadecimal, composed of "hexa" (6), and "decimal" (10), is a different numeral system using base 16: counting up goes from 0 to 9, then from A to F, and to 10. The mental gymnastic is a bit hard to get to, but easy to understand.
 
 To properly differentiate numerical systems used in this book, prefixes `0b` and `0x` will be used for binary and hexadecimal values respectively, as shown in the quick recap table below.
 
@@ -55,13 +55,38 @@ While the software is very recent, and the UI can be a bit hard to get used to, 
 
 For code edition, any text editor will do[^nano]. I personally use [**Visual Studio Code**](https://code.visualstudio.com/) but nothing in this book requires it, so you're free to go with [**Sublime Text**](https://www.sublimetext.com/) or [**Atom**](https://atom-editor.cc/) if those are your preferences.
 
+## Memory
+
+In computer terms, "memory" stands for a lot of things, but there are only a few we really care about:
+
+- **RAM: Random Access Memory**, is the one that will often comes first. While the "Random Access" part may sound strange[^ram], just remember that it's the "moving" part of memory, where programs are allowed to read and write to as much as they want.
+
+- **ROM: Read-Only Memory**, which you probably already know from the "CD-ROM", is data you can read but cannot write to. Since games have historically been sold on proprietary cartridges that cannot be written to, this is why game files have been called "roms".
+
+- **VRAM: Video RAM**, which is just a fancy term for RAM dedicated to video display.
+
+- **WRAM: Work RAM**, an alternative name for RAM.
+
+All types of memory are "byte-addressable", which means any position can be expressed as a byte.
+
+| Address | Value  |
++---------+--------|
+| `0x00`  | `0xDE` |
+| `0x01`  | `0xAD` |
+| `0x02`  | `0xBE` |
+| `0x03`  | `0xEF` |
+
+In the above example, byte `0x02` got value `0xBE`, and value `0xAD` can be found in byte `0x01`.
+
+Technically, hard drive storage is ALSO a kind of memory (even more today with SSDs, which physically work like memory banks), but data is accessed through a file system.
+
 ## Data types
 
 Letters and numbers and everything else that is shown to users is an abstraction of what happens inside the computer. Depending on the programming language, and the level of abstraction, different types will be available to the developer.
 
 In this book, the types will be tied to basic C data types, which are mostly about data size.
 
-The smallest data type is the `u8`, short for "unsigned integer of 8 bits". Going by the above table, this means this variable can include values going from `0x00` to `0xFF` (or from 0 to 255). Next types in order of size are `u16` (`0x0000` to `0xFFFF`, or 0 to 65535)  and `u32` (`0x00000000` to `0xFFFFFFFF`, or 0 to 4294967295).
+The smallest data type is the `u8`, short for "unsigned integer of 8 bits", which is a single-byte long. Going by the above table, this means this variable can include values going from `0x00` to `0xFF` (or from 0 to 255). Next types in order of size are `u16` (`0x0000` to `0xFFFF`, or 0 to 65535)  and `u32` (`0x00000000` to `0xFFFFFFFF`, or 0 to 4294967295).
 
 Signedness isn't used much, since we are often dealing with raw data, but it's useful to keep in mind that it exists.
 
@@ -143,12 +168,11 @@ struct Book {
 
 Depending on the language, the system architecture, and many other variables, padding can play out in a lot of ways. Therefore, while it's useful to know and think about, it's not a deterministic element.
 
-
 ## Programming
 
 I will try my best to make this book accessible to non-programmers.
 
-However, when code is REQUIRED to illustrate something, it will be written in **Rust**, in the most accessible way possible, making it easy for non-**Rust** users to understand this code, or port it to another language if they want to test it on their own.
+However, when code is REQUIRED to illustrate something, it will be written in the most accessible way possible, making it easy for non-programmers to understand this code, or to port it to another language if they want to test it on their own.
 
 Languages come into two flavors: *interpreted* or *compiled*. The first kind means the human-readable source code is read by an *interpreter* program, and then ran; these are usually the easier languages to learn. The second kind means the human-readable source code will be transformed into a program called *a binary* that the user can run anytime they want; since we don't have access to the source code, these are the ones we will be working on.
 
@@ -163,4 +187,5 @@ This book can be enjoyed without using it, but if you want to run some of the bi
 When describing command-line programs, I will make sure to explain them, or keep them simple enough so that the command is easy to understand.
 
 * * *
+[^ram]: Just picture a bookcase: if you want to access the fifth book from the left, on the middle shelf, you can pick it out straight away, without having to pick out all books starting from the top shelf. This is the meaning of "Random Access".
 [^nano]: You can fight over eMacs or vim all you want, but in this house, we use nano!
