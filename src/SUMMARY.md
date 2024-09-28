@@ -26,7 +26,7 @@
 ---
 # Digging in
 
-- [ColdSteel Cheating]()
+- [ColdSteel Cheating](./03_ColdSteel-Cheating.md)
 
 <!-- --- -->
 <!-- # Romhacking -->

@@ -30,7 +30,7 @@ Originally started by developer [near](https://www.reddit.com/r/emulation/commen
 
 Just as the above **Pan Docs** are the reference for the GameBoy architecture, near has been instrumental in the documentation and preservation of his favourite machine, the Super Famicom (aka Super Nintendo). Frustrated with the shortcuts used by emulators of the time (famously, ZSNES, and Snes9x to a lesser degree) to achieve greater compatibility, to the detriment of accuracy, [near](https://en.wikipedia.org/wiki/Near_(programmer)) began **bsnes**, an emulator meant to accurately replicate all hardware parts of the console.
 
-While their work was initially contested because it required high-end computers to emulate a "simple" system, the benefits it brought to game hacking (many old fan translations having only been tested on non-acurrate emulators, they wouldn't work properly on real hardware), combined with the evolution of consumer computers performances, made their emulation approach *de facto* nowadays.
+While their work was initially contested because it required high-end computers to emulate a "simple" system, the benefits it brought to game hacking (many old fan translations having only been tested on non-accurate emulators, they wouldn't work properly on real hardware), combined with the evolution of consumer computers performances, made their emulation approach *de facto* nowadays.
 
 # [Pokémon Red decompilation project](https://github.com/pret/pokered)
 
