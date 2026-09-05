@@ -1,0 +1,18 @@
+cheats
+  revision: 2024-09-23
+
+cheat
+  description: Money 1 (99)
+  code: D347:12
+  enabled: true
+
+cheat
+  description: Money 2 (99)
+  code: D348:34
+  enabled: true
+
+cheat
+  description: Money 3 (99)
+  code: D349:56
+  enabled: false
+
